@@ -1,0 +1,11 @@
+default-hearts: 20
+max-hearts: 60
+messages:
+    gained-heart: "<green>¡Has ganado 1 Corazon!</>"
+    lost-heart: "<red>¡Has perdido un corazon!</>"
+    no-permission: "<red>No tienes permiso para usar este comando.</>"
+    heart-added: "<green>Añadido {hearts} corazones a {player}.</>"
+    heart-removed: "<red>Removido {hearts} corazones a {player}.</>"
+    max-hearts-reached: "<red>Has alcanzado el máximo de corazones.</>"
+    ban-message: "<red>Has perdido todos tus corazones.</>"
+    heart-set: "<green>Se establecieron {hearts} corazones a {player}"
