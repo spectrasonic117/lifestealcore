@@ -1,0 +1,18 @@
+name: lifestealcore
+version: "${version}"
+main: com.spectrasonic.lifestealcore.Main
+api-version: "1.21"
+authors: [Spectrasonic]
+commands:
+    lifesteal:
+        description: Comandos de LifeSteal
+        usage: /<command> <add|remove|reload> <cantidad> [jugador]
+        aliases: [ls]
+
+permissions:
+    lifesteal.admin:
+        description: Permite usar comandos de administración de LifeSteal
+        default: op
+    lifesteal.help:
+        description: Permite ver la ayuda de LifeSteal
+        default: op
