@@ -1,5 +1,6 @@
 default-hearts: 20
 max-hearts: 60
+
 messages:
     gained-heart: "<green>¡Has ganado 1 Corazon!</>"
     lost-heart: "<red>¡Has perdido un corazon!</>"

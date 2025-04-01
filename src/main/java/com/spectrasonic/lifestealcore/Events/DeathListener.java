@@ -1,16 +1,18 @@
 package com.spectrasonic.lifestealcore.Events;
 
 import com.spectrasonic.lifestealcore.Utils.MessageUtils;
-
+import com.spectrasonic.lifestealcore.Main;
 import net.kyori.adventure.text.Component;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import com.spectrasonic.lifestealcore.Main;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class DeathListener implements Listener {
+
     private Main plugin;
 
     public DeathListener(Main plugin) {
@@ -39,7 +41,7 @@ public class DeathListener implements Listener {
     private void removeHeart(Player player) {
         double currentMax = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
         double newMax = Math.max(currentMax - 2, 2);
-        
+
         player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(newMax);
         player.setHealth(newMax);
 
@@ -53,9 +55,9 @@ public class DeathListener implements Listener {
 
     private void addHeart(Player player) {
         double currentMax = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
-        double newMax = Math.min(currentMax + 2, 
-            plugin.getConfig().getInt("max-hearts", 60));
-        
+        double newMax = Math.min(currentMax + 2,
+                plugin.getConfig().getInt("max-hearts", 60));
+
         player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(newMax);
         player.setHealth(newMax);
     }

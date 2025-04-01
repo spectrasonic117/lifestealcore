@@ -8,11 +8,15 @@ commands:
         description: Comandos de LifeSteal
         usage: /<command> <add|remove|reload> <cantidad> [jugador]
         aliases: [ls]
-
+    revive:
+        description: Revive a un jugador
+        usage: /<command> <jugador>
+        aliases: [rv]
+        permission: lifesteal.revive
 permissions:
     lifesteal.admin:
-        description: Permite usar comandos de administración de LifeSteal
         default: op
     lifesteal.help:
-        description: Permite ver la ayuda de LifeSteal
+        default: op
+    lifesteal.revive:
         default: op
