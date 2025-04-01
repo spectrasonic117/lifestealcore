@@ -2,10 +2,13 @@ package com.spectrasonic.lifestealcore.Utils;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.title.Title;
+import net.kyori.adventure.title.Title.Times;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import java.time.Duration;
 
 public final class MessageUtils {
 
@@ -27,7 +30,8 @@ public final class MessageUtils {
     }
 
     public static void sendPermissionMessage(CommandSender sender) {
-        sender.sendMessage(miniMessage.deserialize(PREFIX + "<red>You do not have permission to use this command!</red>"));
+        sender.sendMessage(
+                miniMessage.deserialize(PREFIX + "<red>You do not have permission to use this command!</red>"));
     }
 
     public static void sendStartupMessage(JavaPlugin plugin) {
@@ -84,4 +88,34 @@ public final class MessageUtils {
             Bukkit.getConsoleSender().sendMessage(miniMessage.deserialize(message));
         }
     }
+
+    public static void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+        final Component titleComponent = miniMessage.deserialize(title);
+        final Component subtitleComponent = miniMessage.deserialize(subtitle);
+        player.showTitle(Title.title(titleComponent, subtitleComponent, Times.times(
+                Duration.ofSeconds(fadeIn),
+                Duration.ofSeconds(stay),
+                Duration.ofSeconds(fadeOut))));
+    }
+
+    public static void sendActionBar(Player player, String message) {
+        player.sendActionBar(miniMessage.deserialize(PREFIX + message));
+    }
+
+    public static void broadcastTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+        final Component titleComponent = miniMessage.deserialize(title);
+        final Component subtitleComponent = miniMessage.deserialize(subtitle);
+        final Title formattedTitle = Title.title(titleComponent, subtitleComponent, Times.times(
+                Duration.ofSeconds(fadeIn),
+                Duration.ofSeconds(stay),
+                Duration.ofSeconds(fadeOut)));
+
+        Bukkit.getOnlinePlayers().forEach(player -> player.showTitle(formattedTitle));
+    }
+
+    public static void broadcastActionBar(String message) {
+        final Component component = miniMessage.deserialize(PREFIX + message);
+        Bukkit.getOnlinePlayers().forEach(player -> player.sendActionBar(component));
+    }
+
 }
